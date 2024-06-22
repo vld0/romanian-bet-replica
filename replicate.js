@@ -47,7 +47,7 @@ function replicate() {
       //console.log(betSymbols);
 
       //remove symbols from my portfolio that are not in BET
-      let betPortfolio = portfolio.filter(item => betSymbols.includes(item.symbol))
+      let betPortfolio = portfolio.filter(item => betSymbols.includes(item.symbol));
       //console.log(betPortfolio);
 
       //estimate the number of symbols from BET that you want to replicate
@@ -126,6 +126,8 @@ function replicate() {
           'finalQuantity': finalQuantity,
           'currentQuantity': currentQuantity,
           'currentValue': currentQuantity * item.price,
+          'currentWeight': currentQuantity * item.price * 100 / currentPortfolioValue,
+          'reducedWeight': item.reducedWeight,
           'NB_OF_STOCKS_TO_BUY': delta,
           'AMOUNT_TO_SPEND': delta * item.price ,
           'price': item.price
