@@ -101,11 +101,12 @@ function replicate() {
 
       //calculate the value of your portfolio
       const currentPortfolioValue = betPortfolio.map(item => {
-        const symbolBet = bet.find(itemb => itemb.symbol === item.symbol);
+        const symbolBet = reducedBet.find(itemb => itemb.symbol === item.symbol);
         if (symbolBet) {
           return item.quantity * symbolBet.price;
         } else {
-          throw new Error("could not find symbol " + item.symbol);
+          console.log("WARNING: Symbol " + item.symbol + " will not be included in the portfolio value as you replicate "+reducedBetSize+" companies.");
+          return 0;
         }
       }).reduce((a, b) => a + b);
       console.log("Your current Tradeville BET portfolio value is " + currentPortfolioValue);
